@@ -7,11 +7,15 @@ import IconButton from '@mui/material/IconButton';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import { Link } from '@mui/material/';
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContextProvider';
+
+
 const Navbar = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [show, setShow] = useState(true)
+  const [anchorEl, setAnchorEl] = useState(null);
+ const { currentUser } = useContext(AuthContext);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -55,32 +59,31 @@ const Navbar = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                {!show ? (
+                {currentUser ? (
                     <>
-                <MenuItem onClick={handleClose}
-                ><Link  sx={{
+                <Link  style={{
             textDecoration: "none",
-          }}
-          href="#">Login
-        </Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link  sx={{
+            color: 'black',
+                }} to="#"><MenuItem onClick={handleClose}
+                >New Blog</MenuItem>
+                </Link>
+            <Link  style={{
             textDecoration: "none",
-          }}
-          href="#"
-        >Register</Link></MenuItem> 
+            color: 'black',
+                }} to="#"><MenuItem onClick={handleClose}
+                >Logout</MenuItem></Link> 
         </> ) : (
              <>
-                <MenuItem onClick={handleClose}
-                ><Link  sx={{
+                <Link  style={{
             textDecoration: "none",
-          }}
-          href="#">New Blog
-        </Link></MenuItem>
-            <MenuItem onClick={handleClose}><Link  sx={{
+            color: 'black',
+                }} to="/login"><MenuItem onClick={handleClose}
+                >Login</MenuItem></Link> 
+            <Link  style={{
             textDecoration: "none",
-          }}
-          href="#"
-        >Logout</Link></MenuItem> 
+            color: 'black',
+                }} to="/register"><MenuItem onClick={handleClose}
+                >Register</MenuItem></Link> 
         </> )}
 
               </Menu>
