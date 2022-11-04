@@ -64,13 +64,19 @@ const Navbar = () => {
                 <Link  style={{
             textDecoration: "none",
             color: 'black',
-                }} to="#"><MenuItem onClick={handleClose}
-                >New Blog</MenuItem>
+                }} to="/profile"><MenuItem onClick={handleClose}
+                >Profile</MenuItem>
                 </Link>
-            <Link  style={{
+                <Link  style={{
             textDecoration: "none",
             color: 'black',
-                }} to="#"><MenuItem onClick={handleClose}
+                }} to="/new"><MenuItem onClick={handleClose}
+                >New</MenuItem>
+                </Link>
+                <Link  style={{
+            textDecoration: "none",
+            color: 'black',
+                }} to="/"><MenuItem onClick={handleClose}
                 >Logout</MenuItem></Link> 
         </> ) : (
              <>
