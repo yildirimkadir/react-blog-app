@@ -11,11 +11,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContextProvider';
+import { logOut } from '../authent/firebase';
 
 
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
  const { currentUser } = useContext(AuthContext);
+ const navigate = useNavigate();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -24,13 +26,17 @@ const Navbar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const handleClick = () => {
+    navigate("/");
+  };
+
   return (
     <div>
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Blog-App
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, cursor:"pointer" }} onClick={handleClick}>
+             ── Blog App ──°°
           </Typography>
             <div>
             
@@ -44,6 +50,7 @@ const Navbar = () => {
               >
                 <AccountCircle />
               </IconButton>
+              {currentUser ? (
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
@@ -59,8 +66,6 @@ const Navbar = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                {currentUser ? (
-                    <>
                 <Link  style={{
             textDecoration: "none",
             color: 'black',
@@ -76,10 +81,25 @@ const Navbar = () => {
                 <Link  style={{
             textDecoration: "none",
             color: 'black',
-                }} to="/"><MenuItem onClick={handleClose}
+                }} to="/" onClick={() => logOut()}><MenuItem onClick={handleClose}
                 >Logout</MenuItem></Link> 
-        </> ) : (
-             <>
+            </Menu>
+        ) : (
+             <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
                 <Link  style={{
             textDecoration: "none",
             color: 'black',
@@ -90,9 +110,9 @@ const Navbar = () => {
             color: 'black',
                 }} to="/register"><MenuItem onClick={handleClose}
                 >Register</MenuItem></Link> 
-        </> )}
+            </Menu>
+     )}
 
-              </Menu>
             </div>
         </Toolbar>
       </AppBar>

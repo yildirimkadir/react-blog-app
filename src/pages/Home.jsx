@@ -1,8 +1,14 @@
 import React from 'react'
+import CssBaseline from '@mui/material/CssBaseline';
+
+
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div>
+         <CssBaseline />
+         Home
+    </div>
   )
 }
 
