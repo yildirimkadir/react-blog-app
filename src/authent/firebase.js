@@ -41,11 +41,11 @@ export const createUser = async (email, password, navigate, displayName) => {
             displayName: displayName,
 
         });
-        navigate("/login");
+        navigate("/");
         console.log(userCredential);
 
     } catch (err) {
-        toastWarnNotify("Dies User wurde schon registered")
+        console.log(err.message)
 
     }
 }

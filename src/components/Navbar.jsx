@@ -39,7 +39,6 @@ const Navbar = () => {
              ── Blog App ──°°
           </Typography>
             <div>
-            
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -51,6 +50,7 @@ const Navbar = () => {
                 <AccountCircle />
               </IconButton>
               {currentUser ? (
+                <>
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
@@ -66,6 +66,10 @@ const Navbar = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
+                <Typography fontSize="medium" sx={{fontWeight: 'bold'}} >
+                  {currentUser.displayName}
+                </Typography>
+
                 <Link  style={{
             textDecoration: "none",
             color: 'black',
@@ -76,7 +80,7 @@ const Navbar = () => {
             textDecoration: "none",
             color: 'black',
                 }} to="/new"><MenuItem onClick={handleClose}
-                >New</MenuItem>
+                >New Blog</MenuItem>
                 </Link>
                 <Link  style={{
             textDecoration: "none",
@@ -84,6 +88,7 @@ const Navbar = () => {
                 }} to="/" onClick={() => logOut()}><MenuItem onClick={handleClose}
                 >Logout</MenuItem></Link> 
             </Menu>
+            </>
         ) : (
              <Menu
                 id="menu-appbar"
