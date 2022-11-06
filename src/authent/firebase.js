@@ -41,7 +41,7 @@ export const createUser = async (email, password, navigate, displayName) => {
             displayName: displayName,
 
         });
-        navigate("/");
+        navigate("/login");
         console.log(userCredential);
 
     } catch (err) {
@@ -59,10 +59,8 @@ export const signIn = async (email, password, navigate) => {
             password
         );
         navigate('/');
-        toastSuccessNotify('Logged in successfully!');
         console.log(userCredential);
     } catch (err) {
-        toastErrorNotify(err.message);
         console.log(err);
     }
 };
@@ -90,7 +88,6 @@ export const signUpProvider = (navigate) => {
         .then((result) => {
             console.log(result);
             navigate('/');
-            toastSuccessNotify('Logged out successfully!');
         })
         .catch((error) => {
             // Handle Errors here.
@@ -102,9 +99,8 @@ export const forgotPassword = (email) => {
     sendPasswordResetEmail(auth, email)
         .then(() => {
             // Password reset email sent!
-            toastWarnNotify('Please check your mail box!');
         })
         .catch((err) => {
-            toastErrorNotify(err.message);
+            console.log(err.message);
         });
 };
