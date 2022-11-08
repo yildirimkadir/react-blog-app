@@ -7,6 +7,9 @@ import Profile from "../pages/Profile";
 import NewBLog from "../pages/NewBlog";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContextProvider";
+import UpdateBlog from "../pages/UpdateBlog";
+import Detail from "../pages/Detail";
+
 
 const AppRouter = () => {
   const { currentUser } = useContext(AuthContext);
@@ -27,6 +30,12 @@ const AppRouter = () => {
         </Route>
         <Route path="/profile" element={<PrivateRouter />}>
             <Route path="" element={<Profile />} />
+        </Route>
+        <Route path="/detail/:id" element={<PrivateRouter />}>
+            <Route path="" element={<Detail />} />
+        </Route>
+        <Route path="/update/:id" element={<PrivateRouter />}>
+            <Route path="" element={<UpdateBlog />} />
         </Route>
         </Routes>
       </BrowserRouter>
