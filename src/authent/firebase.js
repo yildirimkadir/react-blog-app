@@ -11,6 +11,9 @@ import {
     updateProfile,
 } from 'firebase/auth';
 import { getDatabase, onValue, ref, push, set, remove, update } from "firebase/database";
+import { useState, useEffect } from "react";
+import { useContext } from 'react';
+import { BlogContext } from '../context/BlogContext';
 
 // import { toastWarnNotify, toastSuccessNotify, toastErrorNotify } from "../helpers/Toastify";
 
@@ -111,17 +114,13 @@ export const forgotPassword = (email) => {
 
 // Database Functions 
 
-export const addUser = (blogValue) => {
+export const addBlog = (blogValue) => {
     const db = getDatabase(app);
     const userRef = ref(db, "blogs/");
     const newUserRef = push(userRef);
     set(newUserRef, blogValue);
 }
 
-export function getOneBlog(id) {
-    const result = currentBlogs?.filter((item) => item.id === id);
-    return result;
-}
 
 export const deleteBlog = (id) => {
     const db = getDatabase(app);
@@ -133,7 +132,7 @@ export const updateBlog = (id, data) => {
     const updates = {}
     updates["blogs/" + id] = data;
     return update(ref(db), updates)
-
 }
+
 
 

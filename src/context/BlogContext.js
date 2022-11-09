@@ -22,11 +22,14 @@ const BlogContextProvider = ({ children }) => {
         })
     }, [])
 
-
+    function getOneBlog(id) {
+        const result = currentBlogs?.filter((item) => item.id === id);
+        return result;
+    }
 
 
     return (
-        <BlogContext.Provider value={{ currentBlogs }}>
+        <BlogContext.Provider value={{ currentBlogs, getOneBlog }}>
             {children}
         </BlogContext.Provider>
     );
