@@ -11,9 +11,6 @@ import {
     updateProfile,
 } from 'firebase/auth';
 import { getDatabase, onValue, ref, push, set, remove, update } from "firebase/database";
-import { useState, useEffect } from "react";
-import { useContext } from 'react';
-import { BlogContext } from '../context/BlogContext';
 
 // import { toastWarnNotify, toastSuccessNotify, toastErrorNotify } from "../helpers/Toastify";
 
@@ -124,26 +121,6 @@ export const addUser = (blogValue) => {
 export function getOneBlog(id) {
     const result = currentBlogs?.filter((item) => item.id === id);
     return result;
-}
-
-export const useFetch = () => {
-    //  const [isLoading,setIsLoading]=useState();
-    const { currentBlogs } = useContext(BlogContext);;
-    useEffect(() => {
-        const db = getDatabase(app);
-        const userRef = ref(db, "blogs/")
-        onValue(userRef, (snapshot) => {
-            const data = snapshot.val();
-            const userArray = []
-
-            for (let id in data) {
-                userArray.push({ id, ...data[id] })
-            }
-            setContactList(userArray)
-            // setIsLoading(false)
-        })
-    }, [])
-    return { currentBlogs }
 }
 
 export const deleteBlog = (id) => {
