@@ -14,7 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import { forgotPassword, signIn, signUpProvider } from '../authent/firebase';
 import { useState } from 'react';
-
+// import googlePng from "../assets/google.png";
 
 function Copyright(props) {
   return (
@@ -107,6 +107,7 @@ export default function Login() {
               type="submit"
               fullWidth
               variant="contained"
+              color='error'
               sx={{ mt: 1, mb: 2 }}
               onClick={handleProviderLogin}
             >

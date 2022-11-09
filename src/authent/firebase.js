@@ -10,6 +10,11 @@ import {
     signOut,
     updateProfile,
 } from 'firebase/auth';
+import { getDatabase, onValue, ref, push, set, remove, update } from "firebase/database";
+import { useState, useEffect } from "react";
+import { useContext } from 'react';
+import { BlogContext } from '../context/BlogContext';
+
 // import { toastWarnNotify, toastSuccessNotify, toastErrorNotify } from "../helpers/Toastify";
 
 // TODO: Replace the following with your app's Firebase project configuration
@@ -17,6 +22,7 @@ import {
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_apiKey,
     authDomain: process.env.REACT_APP_authDomain,
+    databaseURL: process.env.REACT_APP_databaseURL,
     projectId: process.env.REACT_APP_projectId,
     storageBucket: process.env.REACT_APP_storageBucket,
     messagingSenderId: process.env.REACT_APP_messagingSenderId,
@@ -104,3 +110,53 @@ export const forgotPassword = (email) => {
             console.log(err.message);
         });
 };
+
+
+// Database Functions 
+
+export const addUser = (blogValue) => {
+    const db = getDatabase(app);
+    const userRef = ref(db, "blogs/");
+    const newUserRef = push(userRef);
+    set(newUserRef, blogValue);
+}
+
+export function getOneBlog(id) {
+    const result = currentBlogs?.filter((item) => item.id === id);
+    return result;
+}
+
+export const useFetch = () => {
+    //  const [isLoading,setIsLoading]=useState();
+    const { currentBlogs } = useContext(BlogContext);;
+    useEffect(() => {
+        const db = getDatabase(app);
+        const userRef = ref(db, "blogs/")
+        onValue(userRef, (snapshot) => {
+            const data = snapshot.val();
+            const userArray = []
+
+            for (let id in data) {
+                userArray.push({ id, ...data[id] })
+            }
+            setContactList(userArray)
+            // setIsLoading(false)
+        })
+    }, [])
+    return { currentBlogs }
+}
+
+export const deleteBlog = (id) => {
+    const db = getDatabase(app);
+    remove(ref(db, "blogs/" + id));
+}
+
+export const updateBlog = (id, data) => {
+    const db = getDatabase(app);
+    const updates = {}
+    updates["blogs/" + id] = data;
+    return update(ref(db), updates)
+
+}
+
+
