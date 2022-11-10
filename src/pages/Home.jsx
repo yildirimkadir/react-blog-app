@@ -1,13 +1,35 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import CssBaseline from '@mui/material/CssBaseline';
-
-
+import { BlogContext } from '../context/BlogContext';
+import loadingGif from "../assets/loading.gif";
+import { Grid, Typography } from "@mui/material";
+import BlogCard from '../components/BlogCard'
 
 const Home = () => {
+  const { currentBlogs } = useContext(BlogContext);
+
+
+
   return (
     <div>
          <CssBaseline />
-         Home
+        <Grid
+          container
+          spacing={5}
+          justifyContent="center"
+        >
+          {currentBlogs === undefined ? (
+            <img src={loadingGif} alt="loading" />
+          ) : currentBlogs ? (
+            currentBlogs?.map((item, id) => (
+              <Grid key={id} item>
+                <BlogCard post={item} />
+              </Grid>
+            ))
+          ) : (
+            <h3>No data available.</h3>
+          )}
+        </Grid>
     </div>
   )
 }
