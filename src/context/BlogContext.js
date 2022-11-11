@@ -1,6 +1,8 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createContext } from "react";
+import { getDatabase, onValue, ref } from "firebase/database";
+import { app } from "../authent/firebase";
 
 export const BlogContext = createContext();
 
@@ -11,7 +13,7 @@ const BlogContextProvider = ({ children }) => {
         const db = getDatabase(app);
         const userRef = ref(db, "blogs/")
         onValue(userRef, (snapshot) => {
-            const data = snapshot.val();
+            const blogs = snapshot.val();
             const blogL = [];
             for (let id in blogs) {
                 blogL.push({ id, ...blogs[id] });
