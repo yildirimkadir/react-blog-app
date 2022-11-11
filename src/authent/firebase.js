@@ -10,10 +10,10 @@ import {
     signOut,
     updateProfile,
 } from 'firebase/auth';
-import { getDatabase, onValue, ref, push, set, remove, update } from "firebase/database";
-import { useState, useEffect } from "react";
-import { useContext } from 'react';
-import { BlogContext } from '../context/BlogContext';
+import { getDatabase, ref, push, set, remove, update } from "firebase/database";
+// import { useState, useEffect } from "react";
+// import { useContext } from 'react';
+// import { BlogContext } from '../context/BlogContext';
 
 // import { toastWarnNotify, toastSuccessNotify, toastErrorNotify } from "../helpers/Toastify";
 
@@ -30,7 +30,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 
 
 // Initialize Firebase Authentication and get a reference to the service

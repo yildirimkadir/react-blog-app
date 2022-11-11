@@ -9,7 +9,7 @@ import { addBlog } from "../authent/firebase";
 const NewBlog = () => {
   const { currentUser } = useContext(AuthContext);
   const [newBlog, setNewBlog] = useState({
-    author: currentUser.email,
+    author: currentUser.displayName,
     title: "",
     content: "",
     get_comment_count: 0,
