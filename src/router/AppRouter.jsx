@@ -14,7 +14,7 @@ import Detail from "../pages/Detail";
 const AppRouter = () => {
   const { currentUser } = useContext(AuthContext);
   function PrivateRouter() {
-    return currentUser ? <Outlet /> : <Navigate to="/login" replace />;
+    return currentUser ? <Outlet /> : <Navigate to="/" replace />;
   }
 
   return (
