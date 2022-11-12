@@ -34,7 +34,7 @@ const BlogCard = ({post}) => {
 
   const openDetails = () => {
     if (!currentUser) {
-      alert("Login for detials of blog!");
+      alert("Login for details of blog!");
     }
     navigate(`/detail/${id}`);
   };
@@ -43,16 +43,16 @@ const BlogCard = ({post}) => {
   return (
     <div>
       <CssBaseline />
-      <Card sx={{ minWidth: 345,
-    maxWidth: 345}}>
+      <Card sx={{minWidth: 400,
+    maxWidth: 400}}>
       <CardActionArea onClick={openDetails}>
         <CardMedia
-          sx={{  height: 140}}
+          sx={{ height: 250}}
           image={image || placeholder}
           title={title}
+          component="img"
         />
-        <CardContent sx={{ backgroundColor: "#efeefe",
-    height: "125px"}}>
+        <CardContent sx={{ backgroundColor: "#efeefe",height: "125px",overflow: "hidden"}}>
           <Typography
             gutterBottom
             variant="h5"
@@ -65,11 +65,7 @@ const BlogCard = ({post}) => {
           <Typography variant="body2" color="textSecondary" component="p">
             {moment(published_date).format("MMM DD, YYYY")}
           </Typography>
-          <p sx={{  display: "-webkit-box",
-    "-webkit-line-clamp": 2,
-    "-webkit-box-orient": "vertical",
-    "text-overflow": "ellipsis",
-    overflow: "hidden",}}>{content}</p>
+          <p sx={{display: "-webkit-box","-webkit-line-clamp": 2,"-webkit-box-orient": "vertical","text-overflow": "ellipsis", overflow: "hidden"}}>{content}</p>
         </CardContent>
       </CardActionArea>
       <CardActions>
