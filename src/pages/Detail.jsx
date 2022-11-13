@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import placeholder from "../assets/placeholder.png";
 import moment from "moment";
 import loadingGif from "../assets/loading.gif";
@@ -22,6 +22,11 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import { BlogContext } from "../context/BlogContext";
 import { AuthContext } from "../context/AuthContextProvider";
 import { deleteBlog } from "../authent/firebase";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 
 export default function Details() {
@@ -31,10 +36,16 @@ export default function Details() {
   const { id } = useParams();
   console.log(id);
   const result = getOneBlog(id);
+   const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
 
   const deleteHandler = (id) => {
-    console.log("DeleteHandler", id);
     deleteBlog(id);
+    setOpen(false)
     navigate("/");
   };
 
@@ -70,7 +81,7 @@ export default function Details() {
                 />
                 <CardContent sx={{ backgroundColor: "#efeefe",
                                    minHeight: "100px",
-                                   border: "2px solid red"}}>
+                                   }}>
                   <Typography
                     gutterBottom
                     variant="h5"
@@ -133,13 +144,30 @@ export default function Details() {
                 >
                   Update
                 </Button>
-                <Button
-                  variant="contained"
-                  color="error"
-                  onClick={() => deleteHandler(item.id)}
-                >
-                  Delete
+                <Button variant="outlined" onClick={handleClickOpen}>
+                 Delete
                 </Button>
+      <Dialog
+        open={open}
+        onClose={!open}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Delete this blog!!"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are you sure that's a good idea???
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={()=> setOpen(false)}>Cancel</Button>
+          <Button onClick={()=>deleteHandler(item.id)} autoFocus>
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
               </div>
             ) : null}
           </div>
