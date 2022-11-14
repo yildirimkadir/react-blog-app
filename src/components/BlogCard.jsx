@@ -58,7 +58,7 @@ const BlogCard = ({post}) => {
             variant="h5"
             component="h2"
             sx={{ fontFamily: "Girassol",
-    color: "#046582"}}
+                  color: "#046582"}}
           >
             {title}
           </Typography>
