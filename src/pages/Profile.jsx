@@ -1,8 +1,12 @@
 import React from 'react'
-
+import CssBaseline from '@mui/material/CssBaseline';
 const Profile = () => {
   return (
-    <div>Profile</div>
+    <div>
+      <CssBaseline />
+      Profile
+
+    </div>
   )
 }
 

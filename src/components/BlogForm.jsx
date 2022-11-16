@@ -33,7 +33,7 @@ export default function BlogForm({ newBlog, setNewBlog, newBlogHandler }) {
           ── New Blog ──
         </Typography>
         <form sx={{ width: "100%",
-                    marginTop: 3,}} noValidate>
+                    marginTop: 3,}} Validate onSubmit={newBlogHandler}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -53,7 +53,6 @@ export default function BlogForm({ newBlog, setNewBlog, newBlogHandler }) {
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
-                required
                 fullWidth
                 name="image"
                 label="Image URL"
@@ -91,7 +90,6 @@ export default function BlogForm({ newBlog, setNewBlog, newBlogHandler }) {
                 backgroundColor: "#046582",
                 color: "white",
                 fontWeight: "bold"}}
-            onClick={newBlogHandler}
           >
             Submit
           </Button>

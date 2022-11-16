@@ -144,7 +144,7 @@ export default function Details() {
                 >
                   Update
                 </Button>
-                <Button variant="outlined" onClick={handleClickOpen}>
+                <Button variant="contained" color="error" onClick={handleClickOpen}>
                  Delete
                 </Button>
       <Dialog

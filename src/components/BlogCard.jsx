@@ -34,10 +34,12 @@ const BlogCard = ({post}) => {
 
   const openDetails = () => {
     if (!currentUser) {
-      alert("Login for details of blog!");
+      navigate("/login");
+    } else {
+      navigate(`/detail/${id}`);
     }
-    navigate(`/detail/${id}`);
-  };
+  }
+
 
 
   return (
