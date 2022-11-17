@@ -66,7 +66,7 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Register
           </Typography>
-          <Box component="form" noValidate sx={{ mt: 3 }} onSubmit={handleSubmit}>
+          <Box component="form" Validate sx={{ mt: 3 }} onSubmit={handleSubmit}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField

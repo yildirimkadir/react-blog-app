@@ -8,7 +8,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import blogPng from "../assets/blok.png";
 import {updateBlog} from "../authent/firebase";
 import { BlogContext } from "../context/BlogContext";
@@ -34,8 +34,12 @@ const UpdateBlog = () => {
 
   const handleSubmit = () => {
     updateBlog(id, data);
-    navigate(`/detail/${id}`);
+    navigate("/");
   }
+  useEffect(() => {
+    setData(result[0])
+  }, [])
+  
 
 
 
@@ -52,7 +56,7 @@ const UpdateBlog = () => {
                        height: 200,
                        width: 200,
                        backgroundColor: "#046582"}}>
-          <img src={blogPng} alt="blog" sx={{width: 200}} />
+          <img src={data.image} alt="blog" sx={{width: 200}} />
         </Avatar>
         <Typography component="h1" variant="h5" sx={{fontSize: 35,
             fontFamily: "Girassol",
@@ -60,7 +64,7 @@ const UpdateBlog = () => {
           ── Update Blog ──
         </Typography>
         <form sx={{ width: "100%",
-                    marginTop: 3,}} noValidate>
+                    marginTop: 3,}} Validate onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -80,7 +84,6 @@ const UpdateBlog = () => {
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
-                required
                 fullWidth
                 name="image"
                 label="Image URL"
@@ -118,9 +121,8 @@ const UpdateBlog = () => {
                 backgroundColor: "#046582",
                 color: "white",
                 fontWeight: "bold"}}
-            onClick={handleSubmit}
           >
-            Submit
+            Update
           </Button>
         </form>
       </Paper>
