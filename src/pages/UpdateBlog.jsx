@@ -38,11 +38,11 @@ const UpdateBlog = () => {
   }
   useEffect(() => {
     setData(result[0])
-  }, [])
+  }, [result])
   
 
 
-
+console.log(result);
 
   return (
     <div>
@@ -64,7 +64,7 @@ const UpdateBlog = () => {
           ── Update Blog ──
         </Typography>
         <form sx={{ width: "100%",
-                    marginTop: 3,}} Validate onSubmit={handleSubmit}>
+                    marginTop: 3,}} validate="true" onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
