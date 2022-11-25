@@ -16,12 +16,12 @@ const Profile = () => {
                marginTop: 100}}>
       <CssBaseline />
       <Card sx={{minWidth: 275,
-    maxWidth: 500,
-    width: "50%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    padding: 25}}>
+                 maxWidth: 500,
+                 width: "50%",
+                 display: "flex",
+                 flexDirection: "column",
+                 alignItems: "center",
+                 padding: 25}}>
         <img
           src={currentUser?.photoURL}
           sx={{borderRadius: "50%",
