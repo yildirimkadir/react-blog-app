@@ -1,34 +1,31 @@
 import React, { useContext } from 'react'
 import CssBaseline from '@mui/material/CssBaseline';
-import { Card, CardContent, Typography } from "@mui/material";
+import { Card, CardContent, Typography,Avatar,CardMedia } from "@mui/material";
 import { AuthContext } from '../context/AuthContextProvider';
+import photoURL from "../assets/avatar.png"
 
 
 const Profile = () => {
   const { currentUser } = useContext(AuthContext);
 
   return (
-    <div sx={{ display: "flex",
-               flexDirection: "column",
-               justifyContent: "center",
-               alignItems: "center",
-               height: 500,
-               marginTop: 100}}>
+    <div style={{
+                    width: "fit-content",
+                    marginLeft: 3,
+                    marginTop: 4,
+                    border:"3px solid black",
+                }}>
       <CssBaseline />
-      <Card sx={{minWidth: 275,
-                 maxWidth: 500,
-                 width: "50%",
-                 display: "flex",
-                 flexDirection: "column",
-                 alignItems: "center",
-                 padding: 25}}>
+      <Avatar sx={{ marginTop: 4,
+                    marginLeft: 3,
+                    height: 400,
+                    width: 400}}>
         <img
-          src={currentUser?.photoURL}
-          sx={{borderRadius: "50%",
-               width: "100px"}}
+          src={photoURL}
           alt="profile"
-        />
-        <CardContent>
+        /></Avatar>
+        <CardContent sx={{ marginTop: 1,
+                    marginLeft:15}}>
           <Typography
            sx={{fontSize: 14}}
             color="textSecondary"
@@ -36,17 +33,16 @@ const Profile = () => {
           >
             Display Name
           </Typography>
-          <Typography variant="h5" component="h2">
+          <Typography variant="h6" component="h2">
             {currentUser?.displayName || "Not Found!"}
           </Typography>
-          <Typography sx={{marginBottom:3}} color="textSecondary">
+          <Typography sx={{marginBottom:1, marginTop: 3, fontSize: 14}} color="textSecondary">
             Email
           </Typography>
-          <Typography variant="body2" component="p">
+          <Typography variant="h6" component="h2">
             {currentUser?.email || "Not Found!"}
           </Typography>
         </CardContent>
-      </Card>
     </div>
   );
 }

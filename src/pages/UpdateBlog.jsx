@@ -36,9 +36,6 @@ const UpdateBlog = () => {
     updateBlog(id, data);
     navigate("/");
   }
-  useEffect(() => {
-    setData(result[0])
-  }, [result])
   
 
 
