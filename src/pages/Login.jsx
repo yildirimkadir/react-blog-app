@@ -3,7 +3,8 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
+import MenuItem from '@mui/material/MenuItem';
+// import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -11,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 // import GoogleIcon from '@mui/icons-material/Google';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { forgotPassword, signIn, signUpProvider } from '../authent/firebase';
 import { useState } from 'react';
 // import googlePng from "../assets/google.png";
@@ -114,13 +115,13 @@ export default function Login() {
               Continue with Google
             </Button>
             <Grid container>
-              <Grid item xs  onClick={() => forgotPassword(email)}>
-                <Link href="#" variant="body2">
+                 <Grid item xs  onClick={() => forgotPassword(email)}>
+                <Link to="#" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/register" variant="body2">
+                <Link to="/register" variant="body2">
                   {"Don't have an account? Register"}
                 </Link>
               </Grid>
